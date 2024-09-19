@@ -1,6 +1,6 @@
 {
   "name": "strict-ls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A TypeScript package for enhanced localStorage handling with a simpler API and strict behavior.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
