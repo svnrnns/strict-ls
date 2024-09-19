@@ -7,7 +7,7 @@ function isObject(obj: any) {
 function isJSON(str: string): boolean {
   try {
     const obj = JSON.parse(str);
-    return typeof obj === 'object' && obj !== null && !Array.isArray(obj);
+    return typeof obj === 'object' && obj !== null;
   } catch (error) {
     return false;
   }
