@@ -1,0 +1,39 @@
+{
+  "name": "strict-ls",
+  "version": "1.0.0",
+  "description": "A TypeScript package for enhanced localStorage handling with a simpler API and strict behavior.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./types": "./dist/types.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "localstorage",
+    "typescript",
+    "strict",
+    "api"
+  ],
+  "author": "seven rings (https://twitter.com/svnrnns)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svnrnns/strict-ls"
+  },
+  "bugs": {
+    "url": "https://github.com/svnrnns/strict-ls/issues"
+  },
+  "homepage": "https://github.com/svnrnns/strict-ls"
+}
