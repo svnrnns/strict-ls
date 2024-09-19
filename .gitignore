@@ -3,6 +3,7 @@
 
 # Build output
 /dist/
+/coverage/
 
 # TypeScript configuration files
 /tsconfig.tsbuildinfo
