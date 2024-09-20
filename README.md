@@ -99,9 +99,9 @@ The library provides specific error classes for handling LocalStorage errors:
 
 ### Methods
 
-- ` get(key: string): GenericItem`: Retrieves the value for a given key.
-- ` set(key: string, value: GenericItem): boolean`: Sets a value for a given key.
-- ` exists(key: string): boolean`: Checks if a key exists in LocalStorage.
-- ` remove(key: string): boolean`: Removes a key and its value from LocalStorage.
-- `clear()`: void: Clears all items from LocalStorage.
-- `length()`: number: Returns the total number of items in LocalStorage.
+- `get(key: string): GenericItem`: Retrieves the value for a given key.
+- `set(key: string, value: GenericItem): boolean`: Sets a value for a given key.
+- `exists(key: string): boolean`: Checks if a key exists in LocalStorage.
+- `remove(key: string): boolean`: Removes a key and its value from LocalStorage.
+- `clear(): void`: Clears all items from LocalStorage.
+- `length(): number`: Returns the total number of items in LocalStorage.
