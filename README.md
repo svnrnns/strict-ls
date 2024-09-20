@@ -64,14 +64,23 @@ const boolean = exists('myKey');
 
 ## TypeScript Types
 
-`GenericItem`
+## Import
+
+Types can be imported through the `/types` path.
+
+```js
+import { GenericItem } from 'strict-ls/types';
+```
+
+### `GenericItem`
+
 The `GenericItem` type alias is defined as:
 
 ```ts
 type GenericItem = Record<string, any> | string;
 ```
 
-his type allows you to store either a string or an object (in the form of a dictionary) in LocalStorage, ensuring flexibility while maintaining type safety.
+This type allows you to store either a string or an object (in the form of a dictionary) in LocalStorage, ensuring flexibility while maintaining type safety.
 
 ## Error Handling
 
