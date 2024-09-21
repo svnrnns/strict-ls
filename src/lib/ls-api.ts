@@ -1,26 +1,40 @@
 import { LocalStorageCheckError, LocalStorageError } from './ls-error';
-import { parseIfJSON, isObject } from './helpers';
+import { parseIfJSON, isObject, isDateString } from './helpers';
 import { GenericItem } from './types';
 
 function checkEmptyKey(key: string) {
   if (key.length === 0) throw new LocalStorageError('Key value not provided.');
 }
+
 /**
  * Retrieves the value assigned to the given key from the local storage.
  * @param {string} key - The key to look for.
  * @throws {LocalStorageCheckError} Throws an error if the key does not exist in the storage.
- * @returns {GenericItem} The value. If the value is a dictionary-like object, it will be deserialized.
+ * @returns {GenericItem} The value. Automatically deserializes JSON objects, Dates, numbers, and booleans.
  */
 export function useGetStorage(key: string): GenericItem {
   checkEmptyKey(key);
 
   const item = localStorage.getItem(key);
   if (item === null) throw new LocalStorageCheckError(key);
+
+  if (!isNaN(Number(item))) {
+    return Number(item);
+  }
+
+  if (item === 'true' || item === 'false') {
+    return item === 'true';
+  }
+
+  if (isDateString(item.replace(/"/g, ''))) {
+    return new Date(item.replace(/"/g, ''));
+  }
+
   return parseIfJSON(item);
 }
 
 /**
- * Sets a value to a key in the local storage. Serializes the data if the value is a dictionary-like object.
+ * Sets a value to a key in the local storage. Serializes the data if the value is an object, date, number, or boolean.
  * @param {string} key - The key.
  * @param {GenericItem} value - The value.
  * @throws {LocalStorageError} Throws an error if the key is not provided.
@@ -28,12 +42,25 @@ export function useGetStorage(key: string): GenericItem {
 export function useSetStorage(key: string, value: GenericItem): boolean {
   checkEmptyKey(key);
 
-  const formattedValue = isObject(value)
-    ? JSON.stringify(value)
-    : value.toString();
+  let formattedValue: string = '';
+
+  if (value instanceof Date) {
+    formattedValue = value.toISOString();
+  }
+
+  if (isObject(value)) {
+    formattedValue = JSON.stringify(value);
+  }
+
+  if (
+    typeof value === 'number' ||
+    typeof value === 'boolean' ||
+    typeof value === 'string'
+  ) {
+    formattedValue = value.toString();
+  }
 
   localStorage.setItem(key, formattedValue);
-
   return true;
 }
 

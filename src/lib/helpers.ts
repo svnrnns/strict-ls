@@ -17,4 +17,9 @@ function parseIfJSON(item: string): GenericItem {
   return isJSON(item) ? JSON.parse(item) : item;
 }
 
-export { isObject, isJSON, parseIfJSON };
+function isDateString(value: string): boolean {
+  const date = new Date(value);
+  return !isNaN(date.getTime());
+}
+
+export { isObject, isJSON, parseIfJSON, isDateString };

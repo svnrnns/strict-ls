@@ -34,13 +34,17 @@ npm install strict-ls
 
 You can create an instance of the Storage class to create a namespace.
 
-> Note: This wonderful package makes the storage and retrieval of object data an easy task!
+> Note: This wonderful package automatically serializes objects, numbers, booleans and dates!
 
 ```js
 // Basic Usage
 import { get, set } from 'strict-ls';
 set('myKey', { foo: 'bar' });
 const value = get('myKey'); // { foo: 'bar' }
+
+set('myBoolean', true);
+const bool = get('myBoolean'); // true
+// etc
 
 // With namespace
 // Note that this will read 'namespace:token'
@@ -77,7 +81,7 @@ import { GenericItem } from 'strict-ls/types';
 The `GenericItem` type alias is defined as:
 
 ```ts
-type GenericItem = Record<string, any> | string;
+type GenericItem = Record<string, any> | string | number | boolean | Date;
 ```
 
 This type allows you to store either a string or an object (in the form of a dictionary) in LocalStorage, ensuring flexibility while maintaining type safety.
@@ -102,6 +106,6 @@ The library provides specific error classes for handling LocalStorage errors:
 - `get(key: string): GenericItem`: Retrieves the value for a given key.
 - `set(key: string, value: GenericItem): boolean`: Sets a value for a given key.
 - `exists(key: string): boolean`: Checks if a key exists in LocalStorage.
-- `remove(key: string): boolean`: Removes a key and its value from LocalStorage.
+- `remove(key: string): boolean`: If exists, removes a key and its value from LocalStorage.
 - `clear(): void`: Clears all items from LocalStorage.
 - `length(): number`: Returns the total number of items in LocalStorage.
