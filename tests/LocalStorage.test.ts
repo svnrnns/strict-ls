@@ -22,6 +22,21 @@ describe('LocalStorage', () => {
     expect(storage.get('testKey')).toEqual({ test: 'value' });
   });
 
+  test('should set and get an array of objects', () => {
+    const value = [
+      {
+        id: 1,
+        test: 'value',
+      },
+      {
+        id: 2,
+        test: 'value',
+      },
+    ];
+    storage.set('testKey', value);
+    expect(storage.get('testKey')).toEqual(value);
+  });
+
   test('should set and get a Date object', () => {
     const date = new Date();
     storage.set('dateKey', date);

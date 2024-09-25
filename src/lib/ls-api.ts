@@ -48,7 +48,7 @@ export function useSetStorage(key: string, value: GenericItem): boolean {
     formattedValue = value.toISOString();
   }
 
-  if (isObject(value)) {
+  if (isObject(value) || Array.isArray(value)) {
     formattedValue = JSON.stringify(value);
   }
 
