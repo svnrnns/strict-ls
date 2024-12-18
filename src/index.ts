@@ -13,3 +13,4 @@ const length = (): number => defaultLocalStorage.length();
 
 export default LocalStorage;
 export { get, set, exists, remove, clear, length };
+export type { GenericItem };

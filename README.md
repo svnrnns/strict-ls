@@ -68,12 +68,12 @@ const boolean = exists('myKey');
 
 ## TypeScript Types
 
-## Import
+### Import
 
-Types can be imported through the `/types` path.
+Types can be imported through this way.
 
 ```js
-import { GenericItem } from 'strict-ls/types';
+import type { GenericItem } from 'strict-ls';
 ```
 
 ### `GenericItem`
