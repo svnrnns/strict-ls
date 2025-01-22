@@ -1,5 +1,5 @@
 export type GenericItem =
-  | Record<string, any>
+  | Record<string, unknown>
   | string
   | number
   | boolean
