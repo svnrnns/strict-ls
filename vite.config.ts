@@ -1,23 +1,22 @@
-import path from 'path';
 import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'strict-ls',
-      fileName: (format) => `index.${format}.js`,
+      entry: 'src/index.ts',
+      fileName: (format) => `strict-ls.${format === 'es' ? 'js' : 'cjs'}`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: [],
       output: {
         exports: 'named',
       },
     },
   },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js',
-    },
-  },
+  plugins: [
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
 });
